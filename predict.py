@@ -25,15 +25,15 @@ def assigner_tier(score):
 # --- Charger le modèle et la liste des colonnes ---
 
 modele = XGBClassifier()
-modele.load_model("/mnt/user-data/outputs/lead_scoring_model.json")
+modele.load_model("outputs/lead_scoring_model.json")
 
-with open("/mnt/user-data/outputs/feature_columns.json") as f:
+with open("output/feature_columns.json") as f:
     colonnes_entrainement = json.load(f)
 
 
 # --- Charger les leads à scorer ---
 
-leads = pd.read_csv("/mnt/user-data/outputs/synthetic_leads.csv")
+leads = pd.read_csv("output/synthetic_leads.csv")
 print(f"{len(leads)} leads à scorer.")
 
 
@@ -54,7 +54,7 @@ leads["Lead_Score_Tier"] = leads["Lead_Score"].apply(assigner_tier)
 
 resultats = leads[["Lead_Id", "LeadSource", "Title", "Lead_Score", "Lead_Score_Tier"]]
 resultats = resultats.sort_values("Lead_Score", ascending=False)
-resultats.to_csv("/mnt/user-data/outputs/leads_scored.csv", index=False)
+resultats.to_csv("output/leads_scored.csv", index=False)
 
 print("\nTop 10 des leads les mieux notés :")
 print(resultats.head(10).to_string(index=False))

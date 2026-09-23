@@ -1,1 +1,4 @@
 .env
+feature_columns.json
+lead_scoring.csv
+synthetic_leads.csv
