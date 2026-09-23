@@ -1,4 +1,4 @@
 .env
-feature_columns.json
-lead_scoring.csv
-synthetic_leads.csv
+output/feature_columns.json
+output/lead_scoring.csv
+output/synthetic_leads.csv
